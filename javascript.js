@@ -13,7 +13,7 @@ function addBookToLibrary(book) {
 
 function displayLibrary(lib) {
     lib.forEach(book => {
-        const display = document.querySelector(".books");
+        const display = document.querySelector(".entries");
         const newEntry = document.createElement("div");
         newEntry.classList.add("entry");
         if (display.firstChild) {
@@ -26,14 +26,17 @@ function displayLibrary(lib) {
         newEntry.appendChild(title);
         title.textContent = book.name;
 
-        const info = document.createElement("p");
-        newEntry.appendChild(info);
-        info.textContent = `by ${book.author}, ${book.pages} pages, `;
+        const author = document.createElement("p");
+        author.textContent = `${book.author}`;
+        const pages = document.createElement('p');
+        pages.textContent = `${book.pages}`;
+        const read = document.createElement('p');
         if (book.read) {
-            info.textContent += "read";
+            read.textContent += "read";
         } else {
-            info.textContent += "not read"
+            read.textContent += "not read"
         }
+        [author, pages, read].forEach(info => newEntry.appendChild(info));
     });
 }
 
