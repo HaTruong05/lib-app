@@ -12,8 +12,9 @@ function addBookToLibrary(book) {
 }
 
 function displayLibrary(lib) {
+    const display = document.querySelector(".entries");
+    display.innerHTML = '';
     lib.forEach(book => {
-        const display = document.querySelector(".entries");
         const newEntry = document.createElement("div");
         newEntry.classList.add("entry");
         if (display.firstChild) {
@@ -39,6 +40,32 @@ function displayLibrary(lib) {
         [author, pages, read].forEach(info => newEntry.appendChild(info));
     });
 }
+
+const newBookButton = document.getElementById('add-book');
+const bookForm = document.getElementById('book-form');
+const cancelButton = document.getElementById('cancel')
+const addButton = document.getElementById('add')
+
+const title = document.getElementById('title');
+const author = document.getElementById('author');
+const pages = document.getElementById('pages');
+const read = document.getElementById('read');
+
+newBookButton.addEventListener('click', () => {
+    bookForm.showModal();
+});
+
+cancelButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    bookForm.close();
+})
+
+addButton.addEventListener('click', () => {
+    bookForm.close();
+    newBook = new Book(title.value, author.value, pages.value, read.value);
+    addBookToLibrary(newBook);
+    displayLibrary(myLibrary);
+})
 
 book1 = new Book('a', 'b', 100, true);
 book2 = new Book('c', 'd', 12, false);

@@ -9,10 +9,33 @@
 </head>
 <body>
     <h1>Your Library</h1>
-    <div class="add-book">
+    <div class="add-book" id="add-book">
         <button>New Book</button>
     </div>
-    <div class="entries">
-    </div>
+    <dialog id="book-form">
+        <form method="dialog">
+            <div class="fields">
+                <label>
+                  Book title
+                  <input type="text" id="title" required />
+                </label>
+                <label>
+                  Author
+                  <input type="text" id="author" required />
+                </label>
+                <label>
+                  Number of pages
+                  <input type="text" id="pages" required />
+                </label>
+                <label>
+                  Read?
+                  <input type="checkbox" id="read" required />
+                </label>
+            </div>
+            <button id="cancel">Cancel</button>
+            <button id="add">Add</button>
+        </form>
+      </dialog>
+    <div class="entries"></div>
 </body>
 </html>

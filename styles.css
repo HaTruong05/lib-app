@@ -1,4 +1,4 @@
-* {
+*:not(dialog){
     margin: 0;
     padding: 0;
     font-family: 'Times New Roman', Times, serif;
@@ -9,6 +9,15 @@ h1{
     justify-content: center;
     align-items: center;
     margin: 16px;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-left: 16px;
 }
 
 .add-book{
@@ -25,6 +34,12 @@ button {
     background-color: lightblue;
     font-size: large;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#cancel, #add {
+    font-size: small;
+    margin-top: 16px;
+    margin-right: 12px;
 }
 
 .entries{
