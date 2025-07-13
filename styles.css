@@ -4,10 +4,14 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
-h1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 6rem;
+    text-align: center;
     margin: 16px;
 }
 
@@ -37,13 +41,19 @@ button {
 }
 
 .bookButton {
-    padding: 0 4px;
-    background-color: #94a3b8;
+    background-color: #475569;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px 8px;
 }
 
 .bookButtons {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 #cancel, #add {
@@ -52,22 +62,29 @@ button {
     margin-right: 12px;
 }
 
-.entries{
-    display: grid;
-    resize: both;
-    overflow: auto;
-    padding: 0 300px;
+.entry {
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: #64748b;
+    text-align: left;
+    color: white;
+    font-size: 1rem;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
     gap: 8px;
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-auto-rows: 1fr;
 }
 
-.entry {
-    background-color: #94a3b8;
-    text-align: center;
-    color: white;
-    font-size: 1.5rem;
-    padding: 8px;
-
+.entries {
+    display: grid;
+    gap: 16px;
+    padding: 16px 32px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    margin: 0 auto;
+    max-width: 1200px;
 }

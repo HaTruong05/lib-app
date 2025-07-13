@@ -110,12 +110,28 @@ addButton.addEventListener('click', () => {
     }
 })
 
-book1 = new Book('a', 'b', 100, true);
-book2 = new Book('c', 'd', 12, false);
-book3 = new Book('e', 'f', 14, true);
+const books = [
+  new Book('The Road', 'Cormac McCarthy', 287, false),
+  new Book('The Name of the Wind', 'Patrick Rothfuss', 662, false),
+  new Book('Harry Potter and the Sorcerer’s Stone', 'J.K. Rowling', 309, false),
+  new Book('Pride and Prejudice', 'Jane Austen', 279, false),
+  new Book('Moby Dick', 'Herman Melville', 635, false),
+  new Book('The Great Gatsby', 'F. Scott Fitzgerald', 180, false),
+  new Book('Fahrenheit 451', 'Ray Bradbury', 194, false),
+  new Book('The Catcher in the Rye', 'J.D. Salinger', 214, false),
+  new Book('The Hobbit', 'J.R.R. Tolkien', 310, false),
+  new Book('To Kill a Mockingbird', 'Harper Lee', 281, false),
+  new Book('1984', 'George Orwell', 328, false),
+  new Book('Bloodmarked', 'Tracy Deonn', 400, true),
+  new Book('Legendborn', 'Tracy Deonn', 403, true),
+  new Book('Percy Jackson & the Olympians: The Last Olympian', 'Rick Riordan', 381, true),
+  new Book('Percy Jackson & the Olympians: The Battle of the Labyrinth', 'Rick Riordan', 361, true),
+  new Book('Percy Jackson & the Olympians: The Titan’s Curse', 'Rick Riordan', 312, true),
+  new Book('Percy Jackson & the Olympians: The Sea of Monsters', 'Rick Riordan', 279, true),
+  new Book('Percy Jackson & the Olympians: The Lightning Thief', 'Rick Riordan', 377, true),
+  new Book('Do Androids Dream of Electric Sheep?', 'Philip K. Dick', 210, true),
+  new Book('Dune', 'Frank Herbert', 412, true),
+];
 
-addBookToLibrary(book1);
-addBookToLibrary(book2);
-addBookToLibrary(book3);
-
+books.forEach(book => addBookToLibrary(book));
 displayLibrary(myLibrary);
