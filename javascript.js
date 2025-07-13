@@ -50,21 +50,32 @@ const title = document.getElementById('title');
 const author = document.getElementById('author');
 const pages = document.getElementById('pages');
 const read = document.getElementById('read');
+const fields = document.getElementsByClassName('fields')[0];
+const warnText = document.createElement('p');
+warnText.style.color = 'red';
+warnText.textContent = "Can't leave title, author, or pages blank!";
 
 newBookButton.addEventListener('click', () => {
+    if(fields.contains(warnText)){
+        fields.removeChild(warnText);
+    }
+    [title, author, pages, read].forEach(f => f.value = '');
     bookForm.showModal();
 });
 
-cancelButton.addEventListener('click', (e) => {
-    e.preventDefault();
+cancelButton.addEventListener('click', () => {
     bookForm.close();
 })
 
 addButton.addEventListener('click', () => {
-    bookForm.close();
-    newBook = new Book(title.value, author.value, pages.value, read.value);
-    addBookToLibrary(newBook);
-    displayLibrary(myLibrary);
+    if (!title.value || !author.value || !pages.value) {
+        fields.insertBefore(warnText, fields.firstChild);   
+    } else {
+        bookForm.close();
+        newBook = new Book(title.value, author.value, pages.value, read.value);
+        addBookToLibrary(newBook);
+        displayLibrary(myLibrary);
+    }
 })
 
 book1 = new Book('a', 'b', 100, true);
