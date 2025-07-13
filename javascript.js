@@ -5,6 +5,7 @@ function Book(name, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.id = crypto.randomUUID();
 }
 
 function addBookToLibrary(book) {
@@ -22,7 +23,37 @@ function displayLibrary(lib) {
         } else {
             display.appendChild(newEntry);
         }
+        
+        const bookButtons = document.createElement('div');
+        bookButtons.classList.add('bookButtons')
 
+        const removeButton = document.createElement('button');
+        removeButton.textContent = '❌';
+        removeButton.classList.add('bookButton');
+
+        // Remove book associated with the button
+        removeButton.addEventListener('click', () => {
+            newEntry.remove();
+            const i = myLibrary.findIndex(b => b.id === book.id);
+            myLibrary.splice(i, 1);
+        })
+
+        const readButton = document.createElement('button')
+        readButton.classList.add('bookButton');
+        readButton.textContent = '✅';
+
+        readButton.addEventListener('click', () => {
+            if (read.textContent !== 'read') {
+                read.textContent = 'read';
+                const i = myLibrary.findIndex(b => b.id === book.id);
+                myLibrary[i].read = true;
+            }
+        })
+        
+        bookButtons.appendChild(readButton);
+        bookButtons.appendChild(removeButton);
+        newEntry.appendChild(bookButtons);
+        
         const title = document.createElement("h2");
         newEntry.appendChild(title);
         title.textContent = book.name;
@@ -59,7 +90,8 @@ newBookButton.addEventListener('click', () => {
     if(fields.contains(warnText)){
         fields.removeChild(warnText);
     }
-    [title, author, pages, read].forEach(f => f.value = '');
+    [title, author, pages].forEach(f => f.value = '');
+    read.checked = false;
     bookForm.showModal();
 });
 
@@ -72,7 +104,7 @@ addButton.addEventListener('click', () => {
         fields.insertBefore(warnText, fields.firstChild);   
     } else {
         bookForm.close();
-        newBook = new Book(title.value, author.value, pages.value, read.value);
+        newBook = new Book(title.value, author.value, pages.value, read.checked);
         addBookToLibrary(newBook);
         displayLibrary(myLibrary);
     }
