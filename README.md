@@ -1,1 +1,3 @@
 # lib-app
+
+A simple, responsive web app that allows users to track and manage their personal book collection. Users can add new books with details like title, author, page count, and reading status, and view them in a clean, grid-based layout. Each book entry can be marked as read/unread or removed from the library. Built using HTML, CSS, and vanilla JavaScript, the app demonstrates core DOM manipulation, form handling, and dynamic layout techniques.
