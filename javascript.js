@@ -1,11 +1,42 @@
 const myLibrary = [];
 
-function Book(name, author, pages, read) {
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = crypto.randomUUID();
+class Book {
+    #name;
+    #author;
+    #pages;
+    #read;
+    #id = crypto.randomUUID;
+
+    constructor(name, author, pages, read) {
+        this.#name = name;
+        this.#author = author;
+        this.#pages = pages;
+        this.#read = read;
+    }
+
+    get name() {
+        return this.#name;
+    }
+
+    get author() {
+        return this.#author;
+    }
+
+    get pages() {
+        return this.#pages;
+    }
+
+    get read() {
+        return this.#read;
+    }
+
+    get id() {
+        return this.#id;
+    }
+
+    set readStatus(newStatus) {
+        this.#read = newStatus;
+    }
 }
 
 function addBookToLibrary(book) {
@@ -14,7 +45,7 @@ function addBookToLibrary(book) {
 
 function displayLibrary(lib) {
     const display = document.querySelector(".entries");
-    display.innerHTML = '';
+    display.textContent = '';
     lib.forEach(book => {
         const newEntry = document.createElement("div");
         newEntry.classList.add("entry");
@@ -46,7 +77,7 @@ function displayLibrary(lib) {
             if (read.textContent !== 'read') {
                 read.textContent = 'read';
                 const i = myLibrary.findIndex(b => b.id === book.id);
-                myLibrary[i].read = true;
+                myLibrary[i].readStatus = true;
             }
         })
         
@@ -59,9 +90,9 @@ function displayLibrary(lib) {
         title.textContent = book.name;
 
         const author = document.createElement("p");
-        author.textContent = `${book.author}`;
+        author.textContent = book.author;
         const pages = document.createElement('p');
-        pages.textContent = `${book.pages}`;
+        pages.textContent = book.pages;
         const read = document.createElement('p');
         if (book.read) {
             read.textContent += "read";
